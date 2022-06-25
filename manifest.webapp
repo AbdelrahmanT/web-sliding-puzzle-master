@@ -11,7 +11,8 @@
   },
   "developer": {
     "name": "Mathieu Pillard",
-    "url": "http://virgule.net/"
+    "url": "http://virgule.net/",
+    "editor":"Mariam Magdy"
   },
   "installs_allowed_from": ["*"],
   "appcache_path": "/manifest.appcache",
