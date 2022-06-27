@@ -31,7 +31,7 @@ function init() {
     var elm = document.getElementById('file');
     var label = document.getElementById('file_label');
     var paused = document.getElementById('paused');
-    var newgame = document.getElementById('newgame');
+    //var newgame = document.getElementById('newgame');
     var restartgame = document.getElementById('restartgame');
     var restartloser= document.getElementById('restartloser');
     if ('MozActivity' in window) {
@@ -66,8 +66,8 @@ function init() {
     });
     paused.addEventListener('mousedown', puzzle.hidePauseScreen);
     paused.addEventListener('touchstart', puzzle.hidePauseScreen);
-    newgame.addEventListener('mousedown', puzzle.newGame);
-    newgame.addEventListener('touchstart', puzzle.newGame);
+   // newgame.addEventListener('mousedown', puzzle.newGame);
+   // newgame.addEventListener('touchstart', puzzle.newGame);
     restartgame.addEventListener('mousedown', puzzle.restartGame);
     restartgame.addEventListener('touchstart', puzzle.restartGame);
     restartloser.addEventListener('mousedown', puzzle.restartLoser);
@@ -414,8 +414,8 @@ puzzle.initCanvas = function() {
     puzzle.canvas = document.createElement('canvas');
     puzzle.canvas.className = 'hidden';
     puzzle.canvas.id = 'finished';
-    puzzle.canvas.addEventListener('mousedown', puzzle.newGame);
-    puzzle.canvas.addEventListener('touchstart', puzzle.newGame);
+    //puzzle.canvas.addEventListener('mousedown', puzzle.newGame);
+    //puzzle.canvas.addEventListener('touchstart', puzzle.newGame);
     document.body.appendChild(puzzle.canvas);
     return puzzle.canvas;
 };
