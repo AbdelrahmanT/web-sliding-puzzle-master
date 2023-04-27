@@ -31,14 +31,15 @@ function init() {
     var elm = document.getElementById('file');
     var label = document.getElementById('file_label');
     var paused = document.getElementById('paused');
-    //var newgame = document.getElementById('newgame');
+    var newgame = document.getElementById('newgame');
     var restartgame = document.getElementById('restartgame');
     var restartloser= document.getElementById('restartloser');
     if ('MozActivity' in window) {
-        /* For browsers with Web Activities, i.e. Firefox OS, we show the
-           Web Activities "pick", restricting to images. */
+        //For browsers with Web Activities, i.e. Firefox OS, we show the
+        //   Web Activities "pick", restricting to images. 
         elm.type = "button";
         elm.value = label.textContent;
+        console.log(elm.value);
         elm.addEventListener('click', function(e) {
             e.preventDefault();
             var pick = new MozActivity({
@@ -49,15 +50,17 @@ function init() {
             });
             pick.onsuccess = function() {
                 // Create image and set the returned blob as the src
+                console.log(this.result.blob);
                 puzzle.init(this.result.blob);
             };
         });
         label.style.display = 'none';
     } else {
-        /* The other browsers get the standard <input type=file> */
+        // The other browsers get the standard <input type=file> 
         elm.addEventListener('change', function() {
             if (this.files.length) {
                 puzzle.init(this.files[0]);
+                console.log(this.files[0]);
             }
         });
     }
@@ -66,8 +69,8 @@ function init() {
     });
     paused.addEventListener('mousedown', puzzle.hidePauseScreen);
     paused.addEventListener('touchstart', puzzle.hidePauseScreen);
-   // newgame.addEventListener('mousedown', puzzle.newGame);
-   // newgame.addEventListener('touchstart', puzzle.newGame);
+    newgame.addEventListener('mousedown', puzzle.newGame);
+    newgame.addEventListener('touchstart', puzzle.newGame);
     restartgame.addEventListener('mousedown', puzzle.restartGame);
     restartgame.addEventListener('touchstart', puzzle.restartGame);
     restartloser.addEventListener('mousedown', puzzle.restartLoser);
@@ -80,7 +83,7 @@ function init() {
         showGui();
     }
 
-    window.applicationCache.addEventListener('updateready', function(e) {
+    /*window.applicationCache.addEventListener('updateready', function(e) {
         if (window.applicationCache.status == window.applicationCache.UPDATEREADY) {
             // Browser downloaded a new app cache.
             // Swap it in and reload the page to get the new hotness.
@@ -92,6 +95,7 @@ function init() {
             // Manifest didn't change. Nothing new to serve.
         }
     }, false);
+uncomment if it doesnt work AT    */
 }
 
 function showGui() {
@@ -414,8 +418,8 @@ puzzle.initCanvas = function() {
     puzzle.canvas = document.createElement('canvas');
     puzzle.canvas.className = 'hidden';
     puzzle.canvas.id = 'finished';
-    //puzzle.canvas.addEventListener('mousedown', puzzle.newGame);
-    //puzzle.canvas.addEventListener('touchstart', puzzle.newGame);
+    puzzle.canvas.addEventListener('mousedown', puzzle.newGame);
+    puzzle.canvas.addEventListener('touchstart', puzzle.newGame);
     document.body.appendChild(puzzle.canvas);
     return puzzle.canvas;
 };
